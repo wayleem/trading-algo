@@ -2,15 +2,18 @@
 
 A backtesting and paper trading system for 0DTE (zero days to expiration) SPY/SPXW options.
 
-## Conclusion: All Strategies Are Unprofitable
+## Conclusion: Nearly All Strategies Are Unprofitable
 
-After implementing proper backtesting with **look-ahead bias prevention** and **real historical option prices** via ThetaData, all tested strategies produced negative returns.
+After implementing proper backtesting with **look-ahead bias prevention** and **real historical option prices** via ThetaData, almost all strategies produced negative returns. Only RSI 30/70 with conservative thresholds showed marginal profitability (+$821).
+
+**The main killer is stop-losses**, not EOD expiration. In the RSI strategy, stop-losses triggered 997 times for -$58,856 while profit targets hit 413 times for +$42,375.
 
 ### Strategy Backtest Results (Jan-Dec 2024)
 
 | Strategy | Trades | Win Rate | Total P&L | Sharpe | Profit Factor |
 |----------|--------|----------|-----------|--------|---------------|
-| RSI Mean Reversion | 1,263 | 31.0% | -$15,816 | -4.17 | 0.72 |
+| RSI 30/70 (conservative) | 215 | 38.1% | +$821 | 0.53 | 1.08 |
+| RSI 44/60 (default) | 1,263 | 31.0% | -$15,816 | -4.17 | 0.72 |
 | ORB (Opening Range Breakout) | 302 | 37.7% | -$2,298 | -5.17 | 0.56 |
 | VWAP Reversion | 673 | 44.7% | -$6,071 | -14.64 | 0.36 |
 | Momentum Scalp | 450 | 34.0% | -$4,124 | -13.69 | 0.23 |
